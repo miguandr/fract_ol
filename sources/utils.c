@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miguandr <miguandr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 19:25:17 by miguandr          #+#    #+#             */
-/*   Updated: 2024/05/06 21:22:10 by miguandr         ###   ########.fr       */
+/*   Created: 2024/05/06 20:56:55 by miguandr          #+#    #+#             */
+/*   Updated: 2024/05/06 21:20:43 by miguandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "../includes/fractol.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
+int	ft_strncmp(char *s1, char *s2, int n)
+{
+	int	i;
 
-/* -Utils-*/
-int	ft_strncmp(char *s1, char *s2, int n);
-
-#endif
+	if (!s1 || !s2 || n <= 0)
+		return (0);
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] && (n > 0))
+	{
+		i++;
+		n--;
+	}
+	return (s1[i] - s2[i]);
+}
