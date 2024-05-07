@@ -6,7 +6,7 @@
 /*   By: miguandr <miguandr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 20:56:55 by miguandr          #+#    #+#             */
-/*   Updated: 2024/05/06 21:20:43 by miguandr         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:26:01 by miguandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,18 @@ int	ft_strncmp(char *s1, char *s2, int n)
 		n--;
 	}
 	return (s1[i] - s2[i]);
+}
+
+void	ft_putstr_fd(char *str, int fd)
+{
+	int	i;
+
+	i = 0;
+	if (str == NULL || fd < 0)
+		return ;
+	while (str[i])
+	{
+		write(fd,&str[i], 1);
+		i++;
+	}
 }
