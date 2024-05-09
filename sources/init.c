@@ -6,7 +6,7 @@
 /*   By: miguandr <miguandr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 20:18:14 by miguandr          #+#    #+#             */
-/*   Updated: 2024/05/07 21:06:55 by miguandr         ###   ########.fr       */
+/*   Updated: 2024/05/09 18:46:08 by miguandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	malloc_error(void)
 {
-	perror("Found problems with memory allocation");
+	write(2, "MALLOC ERROR\n", 13);
 	exit (EXIT_FAILURE);
 }
 

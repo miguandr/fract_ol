@@ -1,35 +1,75 @@
-#Standard and Directories
+# Name
 NAME	= fractol
-MLX		= ./mlx_linux/libmlx_Linux.a
-INC		= includes/
-SRC_DIR	= sources/
-OBJ_DIR	= obj/
 
-#Compiler and Flags
-CC		= CC
+# Compiler and Flags
+CC		= cc
 CFLAGS	= -Wall -Wextra -Werror -g
-RM		= rm -f
+
+#M inilibx
+MLX_DIR		= minilibx-linux/
+MLX_NAME		= libmlx.a
+MLX				= $(MLX_DIR)$(MLX_NAME)
+
+# Libft
+LIBFT_DIR		= libft/
+LIBFT_NAME		= libft.a
+LIBFT			= $(LIBFT_DIR)$(LIBFT_NAME)
+
+# Includes
+INC	=	-I ./includes/\
+		-I ./libft/\
+		-I ./minilibx-linux/
 
 # Source files
-SRC		= $(wildcard $(SRC_DIR)*.c)
-OBJ		= $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
+SRC_DIR	=	sources/
+SRC		=	main.c \
+			init.c \
+			utils.c
+SRCS	=	$(addprefix $(SRC_DIRC), $(SRC))
 
-#Build rules
-all:			$(NAME)
+# Object files
+OBJ_DIR	= obj/
+OBJ			= $(SRC:.c=.o)
+OBJS		= $(addprefix $(OBJ_DIR), $(OBJ))
 
-$(NAME):		$(OBJ)
-				$(CC) $(OBJ) -L./mlx_linux -l./mlx_linux -L/usr/lib -I./mlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+# Build rules
+all:			$(MLX) $(LIBFT) $(NAME)
 
 # Compile object files from source files
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c
-				@mkdir -p $(@D)
-				@$(CC) $(CFLAGS) -I./includes -I/usr/include -I./mlx_linux -O3 -c $< -o $@
+				@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
+
+$(OBJS):		$(OBJ_DIR)
+
+$(OBJ_DIR):
+				@mkdir $(OBJ_DIR)
+
+$(MLX):
+				@echo "Making Minilibx..."
+				@make -sC $(MLX_DIR)
+
+$(LIBFT):
+				@echo "Making Libft..."
+				@make -sC $(LIBFT_DIR)
+
+
+$(NAME):		$(OBJS)
+				@echo "Compiling Fractol..."
+				@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX) $(LIBFT) $(INC) -lXext -lX11 -lm
+				@echo "Fractol ready."
 
 clean:
-		@$(RM) -r $(OBJ_DIR)
+				@echo "Removing .o object files..."
+				@rm -rf $(OBJ_DIR)
+				@make clean -C $(MLX_DIR)
+				@make clean -C $(LIBFT_DIR)
 
-fclean:	clean
-		$(RM) $(NAME)
+fclean:			clean
+				@echo "Removing Fractol..."
+				@rm -f $(NAME)
+				@rm -f $(LIBFT_DIR)$(LIBFT_NAME)
+
+re:		fclean all
 
 # Phony targets represent actions not files
 .PHONY: all clean fclean re

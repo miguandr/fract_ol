@@ -6,7 +6,7 @@
 /*   By: miguandr <miguandr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 19:25:17 by miguandr          #+#    #+#             */
-/*   Updated: 2024/05/07 21:16:49 by miguandr         ###   ########.fr       */
+/*   Updated: 2024/05/09 16:10:51 by miguandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "../mlx_linux/mlx.h"
+# include "../minilibx-linux/mlx.h"
 
 # define R "Valid input:\n./fractol mandelbrot\n./fractol julia <arg1> <arg2>\n"
 # define HEI 800
