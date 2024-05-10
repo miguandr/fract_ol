@@ -5,10 +5,16 @@ NAME	= fractol
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror -g
 
-#M inilibx
-MLX_DIR		= minilibx-linux/
-MLX_NAME		= libmlx.a
-MLX				= $(MLX_DIR)$(MLX_NAME)
+# Minilibx
+ifeq ($(shell uname),Linux)
+	MLX_DIR = minilibx/
+	LIBS = -lXext -lX11 -lm
+else
+	MLX_DIR = minilibx/
+	LIBS = -framework OpenGL -framework AppKit
+endif
+MLX_NAME	= libmlx.a
+MLX			= $(MLX_DIR)$(MLX_NAME)
 
 # Libft
 LIBFT_DIR		= libft/
@@ -18,12 +24,13 @@ LIBFT			= $(LIBFT_DIR)$(LIBFT_NAME)
 # Includes
 INC	=	-I ./includes/\
 		-I ./libft/\
-		-I ./minilibx-linux/
+		-I $(MLX_DIR)
 
 # Source files
 SRC_DIR	=	sources/
 SRC		=	main.c \
 			init.c \
+			info.c \
 			utils.c
 SRCS	=	$(addprefix $(SRC_DIRC), $(SRC))
 
@@ -55,7 +62,7 @@ $(LIBFT):
 
 $(NAME):		$(OBJS)
 				@echo "Compiling Fractol..."
-				@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX) $(LIBFT) $(INC) -lXext -lX11 -lm
+				@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX) $(LIBFT) $(INC) $(LIBS)
 				@echo "Fractol ready."
 
 clean:

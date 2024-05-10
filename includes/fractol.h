@@ -6,7 +6,7 @@
 /*   By: miguandr <miguandr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 19:25:17 by miguandr          #+#    #+#             */
-/*   Updated: 2024/05/09 16:10:51 by miguandr         ###   ########.fr       */
+/*   Updated: 2024/05/10 23:03:07 by miguandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,17 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "../minilibx-linux/mlx.h"
+# include "../minilibx/mlx.h"
+# include "../libft/includes/libft.h"
 
-# define R "Valid input:\n./fractol mandelbrot\n./fractol julia <arg1> <arg2>\n"
-# define HEI 800
-# define WID 800
+/*-Dimensions-*/
+# define HEIGHT 800
+# define WIDTH 800
+
+/*-Fractal sets-*/
+# define MANDELBROT 1
+# define JULIA 2
+# define MANDELBOX 3
 
 /*-Image Struct- (values from mxl_get_data_addr)*/
 //-Image buffer
@@ -39,20 +45,24 @@ typedef struct s_image
 //-hooks values
 typedef struct s_fractal
 {
-	char	*name;
-	void	*cnx;
+	char	set;
+	void	*mlx;
 	void	*wndw;
+	double	nr;
+	double	ni;
 	t_image	img; //buffer
 
 	//hooks member variables //TODO
 }				t_fractal;
 
-
 /*-Utils-*/
-int		ft_strncmp(char *s1, char *s2, int n);
-void	ft_putstr_fd(char *str, int fd);
+void	info_msg(t_fractal *fractal);
+void	clean_exit(int exit_code, t_fractal *fractal);
+int		msg(char *str1, char *str2, int error);
 
 /*-Init Functions-*/
 void	fractal_init(t_fractal *fractal);
+
+
 
 #endif
