@@ -6,7 +6,7 @@
 /*   By: miguandr <miguandr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 20:56:55 by miguandr          #+#    #+#             */
-/*   Updated: 2024/05/10 23:05:07 by miguandr         ###   ########.fr       */
+/*   Updated: 2024/05/13 00:06:09 by miguandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	clean_exit(int exit_code, t_fractal *fractal)
 	//IMAGE AND PALETTE?
 	if (fractal->mlx)
 	{
-		mlx_loop_end(fractal->mlx);
-		mlx_destroy_display(fractal->mlx);
+		//mlx_loop_end(fractal->mlx);
+		//mlx_destroy_display(fractal->mlx);
 		free(fractal->mlx);
 	}
 	exit (exit_code);
@@ -34,4 +34,10 @@ int	msg(char *str1, char *str2, int error)
 	ft_putstr_fd(str1, 2);
 	ft_putstr_fd(str2, 2);
 	return (error);
+}
+
+int	end_fractol(t_fractal *mlx)
+{
+	clean_exit(0, mlx);
+	return (0);
 }

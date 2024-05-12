@@ -3,7 +3,7 @@ NAME	= fractol
 
 # Compiler and Flags
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= -Wall -Wextra -g
 
 # Minilibx
 ifeq ($(shell uname),Linux)
@@ -31,7 +31,9 @@ SRC_DIR	=	sources/
 SRC		=	main.c \
 			init.c \
 			info.c \
-			utils.c
+			utils.c \
+			fractals.c \
+			render.c
 SRCS	=	$(addprefix $(SRC_DIRC), $(SRC))
 
 # Object files

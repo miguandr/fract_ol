@@ -6,7 +6,7 @@
 /*   By: miguandr <miguandr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 19:25:17 by miguandr          #+#    #+#             */
-/*   Updated: 2024/05/10 23:03:07 by miguandr         ###   ########.fr       */
+/*   Updated: 2024/05/13 00:31:17 by miguandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 /*-Dimensions-*/
 # define HEIGHT 800
 # define WIDTH 800
+# define MAX_ITER 50
 
 /*-Fractal sets-*/
 # define MANDELBROT 1
@@ -45,24 +46,37 @@ typedef struct s_image
 //-hooks values
 typedef struct s_fractal
 {
-	char	set;
+	int		set;
+	int		color;
 	void	*mlx;
 	void	*wndw;
 	double	nr;
 	double	ni;
+	double	min_r;
+	double	max_r;
+	double	min_i;
+	double	max_i;
+
 	t_image	img; //buffer
 
 	//hooks member variables //TODO
 }				t_fractal;
 
+/*-Fractals-*/
+int		mandelbrot(double cr, double ci);
+int		julia(t_fractal *fractal, double zr, double zi);
+
+/*-Render-*/
+void	fractal_render(t_fractal *fractal);
+
 /*-Utils-*/
 void	info_msg(t_fractal *fractal);
 void	clean_exit(int exit_code, t_fractal *fractal);
+int		end_fractol(t_fractal *mlx);
 int		msg(char *str1, char *str2, int error);
 
 /*-Init Functions-*/
+void	init_zero(t_fractal *fractal);
 void	fractal_init(t_fractal *fractal);
-
-
 
 #endif
