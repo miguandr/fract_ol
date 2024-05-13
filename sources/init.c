@@ -6,7 +6,7 @@
 /*   By: miguandr <miguandr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 20:18:14 by miguandr          #+#    #+#             */
-/*   Updated: 2024/05/13 00:31:32 by miguandr         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:55:11 by miguandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_zero(t_fractal *fractal)
 	fractal->max_i = 0;
 	fractal->min_i = 0;
 	fractal->set = -1;
-	fractal->color = 0xd7afd7;
+	fractal->color = 0xfcbe11;
 	fractal->img.bitspp = 0;
 	fractal->img.line_len = 0;
 	fractal->img.endian = 0;

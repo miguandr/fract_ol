@@ -6,7 +6,7 @@
 /*   By: miguandr <miguandr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 19:25:17 by miguandr          #+#    #+#             */
-/*   Updated: 2024/05/13 00:31:17 by miguandr         ###   ########.fr       */
+/*   Updated: 2024/05/13 21:18:39 by miguandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int		julia(t_fractal *fractal, double zr, double zi);
 
 /*-Render-*/
 void	fractal_render(t_fractal *fractal);
+void	my_put_pixel(t_image *img, int x, int y, int color);
 
 /*-Utils-*/
 void	info_msg(t_fractal *fractal);

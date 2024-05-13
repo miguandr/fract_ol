@@ -6,7 +6,7 @@
 /*   By: miguandr <miguandr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 20:32:58 by miguandr          #+#    #+#             */
-/*   Updated: 2024/05/13 00:39:02 by miguandr         ###   ########.fr       */
+/*   Updated: 2024/05/13 22:15:56 by miguandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,22 @@ void	fractal_render(t_fractal *fractal)
 			pi = fractal->max_i - (double)y
 				* (fractal->max_i - fractal->min_i) / HEIGHT;
 			iterations = calculate_fractal(fractal, pr, pi);
-			mlx_pixel_put(fractal->mlx, fractal->wndw, x, y, (fractal->color * iterations / 800));
+			fractal->img.pixel = mlx_get_data_addr(fractal->img.img_ptr,
+					&fractal->img.bitspp, &fractal->img.line_len,
+					&fractal->img.endian);
+	//		my_put_pixel(&fractal->img, x, y, fractal->color);
 		}
+	//	mlx_put_image_to_window(fractal->mlx, fractal->wndw,
+	//		fractal->img.img_ptr, x, y);
 	}
-	mlx_put_image_to_window(fractal->mlx, fractal->wndw,
-		fractal->img.img_ptr, 0, 0);
+}
+
+void	my_put_pixel(t_image *img, int x, int y, int color)
+{
+	char	*color_info;
+
+	color_info = img->pixel + (y * img->line_len + x * (img->bitspp / 8));
+	*(unsigned int *)color_info = color;
 }
 
 /*
