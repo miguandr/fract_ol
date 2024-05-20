@@ -6,7 +6,7 @@
 /*   By: miguandr <miguandr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 19:25:17 by miguandr          #+#    #+#             */
-/*   Updated: 2024/05/13 21:18:39 by miguandr         ###   ########.fr       */
+/*   Updated: 2024/05/20 09:02:24 by miguandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,22 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+//# include <X11/X.h>
+# include "keys.h"
 # include "../minilibx/mlx.h"
 # include "../libft/includes/libft.h"
 
 /*-Dimensions-*/
 # define HEIGHT 800
 # define WIDTH 800
-# define MAX_ITER 50
+# define MAX_ITER 200
 
 /*-Fractal sets-*/
 # define MANDELBROT 1
 # define JULIA 2
-# define MANDELBOX 3
+# define TRICORN 3
 
-/*-Image Struct- (values from mxl_get_data_addr)*/
-//-Image buffer
+/*-Image Struct-*/
 typedef struct s_image
 {
 	void	*img_ptr; //pointer to image struct
@@ -41,13 +42,12 @@ typedef struct s_image
 }				t_image;
 
 /*-Fractal Struct-*/
-//-mxl data
-//-image
-//-hooks values
 typedef struct s_fractal
 {
 	int		set;
 	int		color;
+	int		color_set;
+	int		color_main;
 	void	*mlx;
 	void	*wndw;
 	double	nr;
@@ -56,22 +56,22 @@ typedef struct s_fractal
 	double	max_r;
 	double	min_i;
 	double	max_i;
-
+	double	center_r;
+	double	center_i;
+	double	viewport_width;
+	double	viewport_height;
+	double	zoom;
 	t_image	img; //buffer
-
-	//hooks member variables //TODO
 }				t_fractal;
 
 /*-Fractals-*/
 int		mandelbrot(double cr, double ci);
 int		julia(t_fractal *fractal, double zr, double zi);
-
-/*-Render-*/
-void	fractal_render(t_fractal *fractal);
-void	my_put_pixel(t_image *img, int x, int y, int color);
+int		tricorn(double cr, double ci);
 
 /*-Utils-*/
 void	info_msg(t_fractal *fractal);
+void	print_controls(void);
 void	clean_exit(int exit_code, t_fractal *fractal);
 int		end_fractol(t_fractal *mlx);
 int		msg(char *str1, char *str2, int error);
@@ -79,5 +79,16 @@ int		msg(char *str1, char *str2, int error);
 /*-Init Functions-*/
 void	init_zero(t_fractal *fractal);
 void	fractal_init(t_fractal *fractal);
+
+/*-Render-*/
+void	fractal_render(t_fractal *fractal);
+void	get_layout(t_fractal *fractal);
+
+/*-Events-*/
+void	event_management(t_fractal *fractal);
+void	move(t_fractal *fractal, double distance, char direction);
+void	zoom(t_fractal *fractal, double zoom);
+void	change_color(t_fractal *fractal);
+void	change_fractal(t_fractal *fractal);
 
 #endif

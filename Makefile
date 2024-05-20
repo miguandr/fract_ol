@@ -33,7 +33,9 @@ SRC		=	main.c \
 			info.c \
 			utils.c \
 			fractals.c \
-			render.c
+			render.c \
+			event.c \
+			event_utils.c
 SRCS	=	$(addprefix $(SRC_DIRC), $(SRC))
 
 # Object files

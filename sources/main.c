@@ -6,7 +6,7 @@
 /*   By: miguandr <miguandr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 19:27:27 by miguandr          #+#    #+#             */
-/*   Updated: 2024/05/13 00:17:22 by miguandr         ###   ########.fr       */
+/*   Updated: 2024/05/20 09:24:08 by miguandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	get_set(t_fractal *fractal, char **av)
 		fractal->set = MANDELBROT;
 	else if (ft_cmp(av[1], "julia", 2))
 		fractal->set = JULIA;
+	else if (ft_cmp(av[1], "tricorn", 3))
+		fractal->set = TRICORN;
 	else
 		info_msg(fractal);
 }
@@ -69,7 +71,6 @@ static void	handle_args(t_fractal *fractal, int ac, char **av)
 	else if (fractal->set == JULIA && ac > 5)
 		info_msg(fractal);
 	get_julia_values(fractal, ac, av);
-	//get_color(); //DO OR DONT?
 }
 
 int	main(int ac, char *av[])
@@ -82,28 +83,8 @@ int	main(int ac, char *av[])
 	handle_args(&fractal, ac, av);
 	fractal_init(&fractal);
 	fractal_render(&fractal);
-	// print_controls(); //TODO
-	// mlx_hook(); //TODO
-	// mlx_key_hook(); //TODO
-	// mlx_mouse_hook(); _//TODO
+	print_controls();
+	event_management(&fractal);
 	mlx_loop(fractal.mlx);
 	return (0);
 }
-
-
-/*
-if ((ac == 2 && (!ft_strncmp(av[1], "mandelbrot", 10)))
-		|| (ac == 4 && !ft_strncmp(av[1], "julia", 5)))
-	{
-		fractal.name = av[1];
-		fractal_init(&fractal);
-		//fractal_render(&fractal);//TODO
-		//mlx_loop(fractal.cnx);//TODO
-	}
-	else
-	{
-		ft_putstr_fd(R, STDERR_FILENO);
-		exit (EXIT_FAILURE);
-	}
-*/
-
