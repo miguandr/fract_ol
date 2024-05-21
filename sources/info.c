@@ -6,12 +6,16 @@
 /*   By: miguandr <miguandr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:23:49 by miguandr          #+#    #+#             */
-/*   Updated: 2024/05/20 09:24:43 by miguandr         ###   ########.fr       */
+/*   Updated: 2024/05/21 19:58:49 by miguandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
+/*
+Prints available fractal options and usage examples to stdout.
+Prints a list of available fractals and usage examples for the program.
+*/
 static void	fractal_options(void)
 {
 	ft_putendl_fd("***** Available Fractals *****\n", 1);
@@ -27,6 +31,11 @@ static void	fractal_options(void)
 	ft_putendl_fd("./fractol Julia 0.285 0.01\n", 1);
 }
 
+/*
+Prints controls and usage instructions to stdout.
+Prints a list of controls and usage instructions for
+interacting with the fractal.
+*/
 void	print_controls(void)
 {
 	ft_putendl_fd("\n********** Controls **********\n", 1);
@@ -39,6 +48,11 @@ void	print_controls(void)
 	ft_putendl_fd("\n\e[4menjoy the trip..\e[0m :)", 1);
 }
 
+/*
+Prints information about Fractol, including available
+fractal options, controls and usage examples.
+Cleans up resources and exits the program with an error code.
+*/
 void	info_msg(t_fractal *fractal)
 {
 	ft_putendl_fd("\n******************************", 1);

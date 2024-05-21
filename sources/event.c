@@ -6,12 +6,18 @@
 /*   By: miguandr <miguandr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 19:58:35 by miguandr          #+#    #+#             */
-/*   Updated: 2024/05/20 00:26:01 by miguandr         ###   ########.fr       */
+/*   Updated: 2024/05/21 19:34:22 by miguandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
+/*
+Handles mouse input events to zoom in and out of the fractal view.
+Zooms in when the mouse wheel is scrolled up.
+Zooms out when the mouse wheel is scrolled down.
+Renders the fractal after processing the input.
+*/
 static int	mouse_input(int button, int x, int y, t_fractal *fractal)
 {
 	(void)x;
@@ -26,6 +32,14 @@ static int	mouse_input(int button, int x, int y, t_fractal *fractal)
 	return (0);
 }
 
+/*
+Handles keyboard input events to interact with the fractal view.
+Ends the program when the escape key is pressed.
+Zooms in or out using specific keys.
+Moves the view left, right, down, or up using arrow keys.
+Changes color schemes or fractal sets with specific keys.
+Renders the fractal after processing the input.
+*/
 static int	keyboard_input(int keycode, t_fractal *fractal)
 {
 	if (keycode == KEY_ESC)
@@ -55,6 +69,12 @@ static int	keyboard_input(int keycode, t_fractal *fractal)
 	return (0);
 }
 
+/*
+Sets up event handlers for managing window events.
+Hooks the window close event to the end_fractol function.
+Hooks keyboard input events to the keyboard_input function.
+Hooks mouse input events to the mouse_input function.
+*/
 void	event_management(t_fractal *fractal)
 {
 	mlx_hook(fractal->wndw, FINISH_EVENT, 0, end_fractol, fractal);

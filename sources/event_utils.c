@@ -6,12 +6,17 @@
 /*   By: miguandr <miguandr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 19:53:37 by miguandr          #+#    #+#             */
-/*   Updated: 2024/05/20 00:20:51 by miguandr         ###   ########.fr       */
+/*   Updated: 2024/05/21 19:31:23 by miguandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
+/*
+Advances the fractal set to the next one in the sequence, cycling
+back to the first set if the end is reached.
+Updates the fractal layout after changing the set.
+*/
 void	change_fractal(t_fractal *fractal)
 {
 	fractal->set++;
@@ -25,6 +30,11 @@ void	change_fractal(t_fractal *fractal)
 		fractal->set = 1;
 }
 
+/*
+Advances the color scheme to the next one in the sequence, cycling
+back to the first scheme if the end is reached.
+Sets specific colors based on the current color scheme.
+*/
 void	change_color(t_fractal *fractal)
 {
 	fractal->color_set++;
@@ -51,6 +61,10 @@ void	change_color(t_fractal *fractal)
 	}
 }
 
+/*
+Adjusts the zoom level of the fractal, focusing on the center of the current
+view. Calculates new boundaries of the fractal view based on the zoom factor.
+*/
 void	zoom(t_fractal *fractal, double zoom)
 {
 	double	center_r;
@@ -64,6 +78,10 @@ void	zoom(t_fractal *fractal, double zoom)
 	fractal->max_i = fractal->min_i + zoom * center_i;
 }
 
+/*
+Moves the view of the fractal in the specified direction by a given distance.
+Updates the fractal view boundaries based on the direction and distance.
+*/
 void	move(t_fractal *fractal, double distance, char direction)
 {
 	double	center_r;

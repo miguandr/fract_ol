@@ -6,7 +6,7 @@
 /*   By: miguandr <miguandr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 19:25:17 by miguandr          #+#    #+#             */
-/*   Updated: 2024/05/20 09:02:24 by miguandr         ###   ########.fr       */
+/*   Updated: 2024/05/21 20:07:16 by miguandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-//# include <X11/X.h>
+# include <X11/X.h>
 # include "keys.h"
 # include "../minilibx/mlx.h"
 # include "../libft/includes/libft.h"
@@ -24,7 +24,7 @@
 /*-Dimensions-*/
 # define HEIGHT 800
 # define WIDTH 800
-# define MAX_ITER 200
+# define MAX_ITER 400
 
 /*-Fractal sets-*/
 # define MANDELBROT 1
@@ -34,8 +34,8 @@
 /*-Image Struct-*/
 typedef struct s_image
 {
-	void	*img_ptr; //pointer to image struct
-	char	*pixel; //points to the actual pixels
+	void	*img_ptr;
+	char	*pixel;
 	int		bitspp;
 	int		line_len;
 	int		endian;
@@ -60,8 +60,7 @@ typedef struct s_fractal
 	double	center_i;
 	double	viewport_width;
 	double	viewport_height;
-	double	zoom;
-	t_image	img; //buffer
+	t_image	img;
 }				t_fractal;
 
 /*-Fractals-*/

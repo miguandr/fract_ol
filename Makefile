@@ -3,7 +3,7 @@ NAME	= fractol
 
 # Compiler and Flags
 CC		= cc
-CFLAGS	= -Wall -Wextra -g
+CFLAGS	= -Wall -Wextra -Werror
 
 # Minilibx
 ifeq ($(shell uname),Linux)

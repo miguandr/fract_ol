@@ -6,26 +6,36 @@
 /*   By: miguandr <miguandr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 20:32:58 by miguandr          #+#    #+#             */
-/*   Updated: 2024/05/20 09:24:04 by miguandr         ###   ########.fr       */
+/*   Updated: 2024/05/21 19:05:00 by miguandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
+/*
+Sets the color of a specific pixel in the fractal image calculating the offset
+within the image buffer based on the number of iterations. The iterations
+represent how many times the fractal function was applied before the point
+escaped. color_info holds the memory address within the image buffer where the
+color information for the current pixel is stored.
+*/
 static void	my_put_pixel(t_fractal *fractal, int x, int y, int iterations)
 {
 	char	*color_info;
 
-
 	color_info = fractal->img.pixel + (y * fractal->img.line_len)
 		+ (x * (fractal->img.bitspp / 8));
-
 	if (iterations == MAX_ITER)
 		*(unsigned int *)color_info = fractal->color_main;
 	else
 		*(unsigned int *)color_info = fractal->color * iterations;
 }
 
+/*
+Calculates the number of iterations for a given point in the complex
+plane to determine if it belongs to a specified fractal set
+(e.g., Mandelbrot, Julia, Tricorn).
+*/
 static int	calculate_fractal(t_fractal *fractal, double pr, double pi)
 {
 	int	iterations;
@@ -40,6 +50,12 @@ static int	calculate_fractal(t_fractal *fractal, double pr, double pi)
 	return (iterations);
 }
 
+/*
+Renders a fractal image on the screen by iterating over
+each pixel, calculating the corresponding complex plane coordinates,
+and determining the color based on the number of iterations needed
+to escape the fractal set.
+ */
 void	fractal_render(t_fractal *fractal)
 {
 	int		x;
