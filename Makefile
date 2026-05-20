@@ -9,9 +9,11 @@ CFLAGS	= -Wall -Wextra -Werror
 ifeq ($(shell uname),Linux)
 	MLX_DIR = minilibx/
 	LIBS = -lXext -lX11 -lm
+	X11_INC =
 else
 	MLX_DIR = minilibx/
-	LIBS = -framework OpenGL -framework AppKit
+	LIBS = -lXext -lX11 -lm -L/usr/X11/lib
+	X11_INC = -I/usr/X11/include
 endif
 MLX_NAME	= libmlx.a
 MLX			= $(MLX_DIR)$(MLX_NAME)
@@ -24,7 +26,8 @@ LIBFT			= $(LIBFT_DIR)$(LIBFT_NAME)
 # Includes
 INC	=	-I ./includes/\
 		-I ./libft/\
-		-I $(MLX_DIR)
+		-I $(MLX_DIR)\
+		$(X11_INC)
 
 # Source files
 SRC_DIR	=	sources/

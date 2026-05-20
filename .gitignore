@@ -1,0 +1,26 @@
+# Build artifacts
+obj/
+fractol
+libft/libft.a
+minilibx/libmlx.a
+*.o
+*.a
+
+# MiniLibX build leftovers
+minilibx/*.ok
+minilibx/*.gen
+minilibx/test/*.o
+minilibx/test/*.gen
+minilibx/test/mlx-test
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverrideDirectory
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
