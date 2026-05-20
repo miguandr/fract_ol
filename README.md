@@ -4,6 +4,28 @@ A fractal renderer built in C as part of the 42 school curriculum. Renders the M
 
 ---
 
+## Screenshots
+
+### Mandelbrot
+
+| Default view | Zoomed in |
+|:---:|:---:|
+| ![Mandelbrot](img/mandelbrot.png) | ![Mandelbrot zoom](img/mandelbrot_zoom.png) |
+
+### Julia
+
+| Default (`c = -0.835 - 0.2321i`) | Custom (`c = 0.285 + 0.01i`) |
+|:---:|:---:|
+| ![Julia](img/julia.png) | ![Julia custom](img/julia_custom.png) |
+
+### Tricorn
+
+| Default view | Zoomed in |
+|:---:|:---:|
+| ![Tricorn](img/tricorn_1.png) | ![Tricorn zoom](img/tricorn_zoom.png) |
+
+---
+
 ## Build & Run
 
 **Dependencies:** X11 and Xext (Linux) or the Cocoa/OpenGL frameworks (macOS — handled automatically).
